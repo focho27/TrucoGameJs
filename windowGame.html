@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FochoGame</title>
+    <link rel="stylesheet" href="css/estiloWindow.css">
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <section class="top">
+            <div class="first-top">
+
+            <button onclick = colocarCarta(this) id="primera2">    <img src="img/cartas/basto/1basto.png" alt="As de Basto"  id="primera"> </button>    
+        
+            </div>
+            <div class="second-top">
+           <button  onclick = colocarCarta(this) id="segunda2"><img src="img/cartas/espada/1espada.png" alt="As de Espada" id="segunda"></button>
+            </div>
+            <div class="third-top">
+            <button onclick=colocarCarta(this) id="tercera2"><img src="img/cartas/espada/7espada.png" alt="7 de Espada"  id="tercera"></button> 
+            </div>
+        </section>
+
+        <section class="mid">
+            <div class="boton">
+        <!--   <form action="#" name="form" onsubmit="return repartir()">
+                <input type="submit" value="Repartir" id="botonRepartir">-->
+             </form>
+            </div>
+        </section>
+
+        <section class="down">
+             <div class="first-down">
+            <button onclick=colocarCarta(this) id="cuarta2"><img src="img/cartas/basto/1basto.png" alt="As de Basto"  id="cuarta"></button>
+             </div>
+             <div class="second-down">
+                <button  onclick = colocarCarta(this) id="quinta2"><img src="img/cartas/espada/1espada.png" alt="As de Espada" id="quinta"></button>
+             </div>
+             <div class="third-down">
+                <button onclick=colocarCarta(this) id="sexta2"><img src="img/cartas/espada/7espada.png" alt="7 de Espada"  id="sexta"></button> 
+             </div>
+        </section>
+        
+    </main>
+    <footer>
+
+    </footer>
+    <script src="js/game.js"></script>
+</body>
+</html>
