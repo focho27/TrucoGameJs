@@ -6,6 +6,7 @@ button{
     background-color: darkgreen;
 
     border:none;
+    outline: none;
 }
 body{
     background-color: darkgreen;
@@ -15,12 +16,31 @@ img{
     height: 8.750em;
     cursor:pointer;
 }
+p{
+    color: black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: large;
+    text-transform: uppercase;
+    background-color: green;
 
+    font-weight:600;
+}   
+.nameJ1{
+    text-align: center;
+    align-self: flex-start;
+    
+}
+.nameJ2{
+    text-align: center;
+    align-self: center;
+ 
+}
 .top{
     display: flex;
     justify-content: center;
-    margin-bottom: 24em;
-    margin-top: 0.5em;
+    margin-bottom: 23em;
+    margin-top: 1.8em;
+    
 }
 .down{
     display: flex;
@@ -32,6 +52,34 @@ img{
     text-align: center;
     position:relative;
     bottom:12em;
+}
+.score-nameJ1{
+    position: relative;
+    right: 5em;
+    align-self: center;
+}
+
+.punctuationJ1{
+  justify-content: center;
+  align-content: center;
+
+}
+.punctuationJ2{
+    justify-content: center;
+    align-content: center;
+    
+}
+#circuloImagen{
+    width: 5em;
+    height: 5em;
+  
+    background-position: center;
+    
+}
+#circulo2Imagen{
+    width: 5em;
+    height: 5em;
+ 
 }
 
 @media screen and (max-width: 47em) {
@@ -55,5 +103,9 @@ img{
     .boton{
         position: relative;
         top:2em;
+    }
+    .score-nameJ1{
+        position: relative;
+        right: 1em;
     }
 }

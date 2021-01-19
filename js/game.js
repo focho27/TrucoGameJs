@@ -1,17 +1,78 @@
-
-
-
-
-
+let contadorDeManos = 0;
+let mesaFinal =[];
+let contadorMesaJ1 = 0;
+let contadorMesaJ2 = 0;
+let jugadores=[];
+let ganadorPuntoAnterior = 0;
+let j1; 
+let j2;
+let primerMano = false;
+let turno = 0;
+let isMano = 2;
+let contadorDeJugadores = 0;
+let primerCarta = false;
+let segundaCarta = false;
+let tercerCarta = false;
+let seRepartio=false;
+let contadorCarta = 0;
+let ganadorDePunto=0;
+let analisisCartas = {
+};
+let mesa;
+class Jugador{
+    nombre;
+    puntaje;
+    turno;
+    codigo;
+    puntos;
+    constructor(nombre,codigo) {
+        this.nombre = nombre;
+        this.codigo=codigo;
+        this.puntaje=0;
+        this.turno = false;
+        this.puntos = 0;
+    }
+    get getNombre(){
+        return this.nombre;
+    }
+    get getCodigo(){
+        return this.codigo;
+    }
+    get getPuntaje(){
+        return this.puntaje;
+    }
+    get getTurno(){
+        return this.turno;
+    }
+    setPuntos(p){
+        this.puntos = p;
+    }
+    reinicioPuntos(){
+        this.puntos = 0;
+    }
+     setPuntaje(t){
+        this.puntaje =t;
+    }
+    get getPuntos(){
+        return this.puntos;
+    }
+     aumentarPunto(){
+        this.puntos++;
+    }
+    
+}
 class Truco{
     nombre;
     constructor(nombre) {
         this.nombre = nombre;
     }
-    
-    
+    get getNombre(){
+        return this.nombre;
+    }
 }
+
 class Carta{
+    static contadorCarta;
      numero;
      valor;
      nombre;
@@ -19,8 +80,14 @@ class Carta{
         this.numero = numero;
         this.valor = valor;
         this.nombre = nombre;
-    };
-
+        this.contadorCarta = 0;
+    }
+    setAumentarContadorCarta(){
+        this.contadorCarta++;
+    }
+    get getContadorCarta(){
+       return this.contadorCarta;
+    }
     get getNumero(){
         return this.numero;
     }
@@ -39,7 +106,7 @@ class Copa extends Carta{
     }
     
     toString(){
-        const lista  = `Carta ${this.getNumero} || ${this.getNombre}`;
+        const lista  = `Carta ${this.getNumero} || ${this.getNombre} \n`;
         return lista;
     } 
 
@@ -51,7 +118,7 @@ class Oro extends Carta{
     }
     
     toString(){
-        const lista  = `Carta ${this.getNumero} || ${this.getNombre}`;
+        const lista  = `Carta ${this.getNumero} || ${this.getNombre} \n`;
         return lista;
     } 
 }
@@ -62,7 +129,7 @@ class Espada extends Carta{
     }
     
     toString(){
-        const lista  = `Carta ${this.getNumero} || ${this.getNombre}`;
+        const lista  = `Carta ${this.getNumero} || ${this.getNombre} \n`;
         return lista;
     } 
 }
@@ -72,7 +139,7 @@ class Basto extends Carta{
         super(numero,valor,nombre);
     }
     toString(){
-        const lista  = `Carta ${this.getNumero} || ${this.getNombre}`;
+        const lista  = `Carta ${this.getNumero} || ${this.getNombre} \n`;
         return lista;
     } 
    
@@ -343,27 +410,28 @@ function cambiarCartas(){
     document.getElementById("sexta").src=imagenesCartasBasto[mano2[2].numero];*/
 
 }
+/*   Colocar cartas ya se crean y se cambian    */
 
-let primerCarta = false;
-let segundaCarta = false;
-let tercerCarta = false;
-let contadorCarta =0;
+
 function colocarCarta(b) {
-
-    contadorCarta++;
-
-  switch(b.id){
-      case "primera2":
+console.log("se ejecutoooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+if(seRepartio===true){
+    contadorCarta=0;
+    seRepartio = false;
+}
+      if(b.id === "primera2"){
+       
         document.getElementById("primera2").style.position = "relative" ;
         document.getElementById("primera2").style.top = "10em";
         document.getElementById("primera2").style.left="6.2em";
-        if(contadorCarta===1||contadorCarta===2){
+        
+        if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
-        else if(contadorCarta===3||contadorCarta===4){
+        else if(contadorCarta===2||contadorCarta===3){
                 segundaCarta = true;
         }
-        else if(contadorCarta===5||contadorCarta===6){
+        else if(contadorCarta===4||contadorCarta===5){
             tercerCarta=true;
         }
         if(primerCarta){
@@ -373,18 +441,31 @@ function colocarCarta(b) {
         }else if(tercerCarta){
             document.getElementById("primera2").style.zIndex="2";
         }
-          break;
-
-      case "segunda2":
+        analisisCartas[contadorCarta]=true;
+        
+         anadirMesaJ1(mano[0]);
+         primerCarta = false;
+         segundaCarta= false;
+         tercerCarta=false;
+         console.log(`"el contador de Carta es " ${contadorCarta}`);
+         analizamosAfuera(contadorCarta);
+      
+      
+    }
+     
+          
+     
+        if(b.id === "segunda2"){
+       
         document.getElementById("segunda2").style.position = "relative" ;
         document.getElementById("segunda2").style.top = "10em";
-        if(contadorCarta===1||contadorCarta===2){
+        if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
-        else if(contadorCarta===3||contadorCarta===4){
+        else if(contadorCarta===2||contadorCarta===3){
                 segundaCarta = true;
         }
-        else if(contadorCarta===5||contadorCarta===6){
+        else if(contadorCarta===4||contadorCarta===5){
             tercerCarta=true;
         }
         if(primerCarta){
@@ -394,19 +475,30 @@ function colocarCarta(b) {
         }else if(tercerCarta){
             document.getElementById("segunda2").style.zIndex="2";
         }
-          break;
-
-      case "tercera2":
+      
+        analisisCartas[contadorCarta]=true;
+        
+       
+         anadirMesaJ1(mano[1]);
+         primerCarta = false;
+         segundaCarta= false;
+         tercerCarta=false;
+         console.log(`"el contador de Carta es " ${contadorCarta}`);
+         analizamosAfuera(contadorCarta);
+         
+    }
+     
+    if(b.id === "tercera2"){
         document.getElementById("tercera2").style.position = "relative" ;
         document.getElementById("tercera2").style.top = "10em";
         document.getElementById("tercera2").style.right="6.2em";
-        if(contadorCarta===1||contadorCarta===2){
+        if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
-        else if(contadorCarta===3||contadorCarta===4){
+        else if(contadorCarta===2||contadorCarta===3){
                 segundaCarta = true;
         }
-        else if(contadorCarta===5||contadorCarta===6){
+        else if(contadorCarta===4||contadorCarta===5){
             tercerCarta=true;
         }
         if(primerCarta){
@@ -416,19 +508,31 @@ function colocarCarta(b) {
         }else if(tercerCarta){
             document.getElementById("tercera2").style.zIndex=2;
         }
-          break;
+          
+        analisisCartas[contadorCarta]=true;
+     
+        
+      
+         anadirMesaJ1(mano[2]);
+         primerCarta = false;
+         segundaCarta= false;
+         tercerCarta=false;
+         console.log(`"el contador de Carta es " ${contadorCarta}`);
+         analizamosAfuera(contadorCarta);
+         
+    }
 
-      case "cuarta2":
+     if(b.id === "cuarta2"){
         document.getElementById("cuarta2").style.position = "relative" ;
         document.getElementById("cuarta2").style.bottom = "10em";
         document.getElementById("cuarta2").style.left="6.2em";
-        if(contadorCarta===1||contadorCarta===2){
+        if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
-        else if(contadorCarta===3||contadorCarta===4){
+        else if(contadorCarta===2||contadorCarta===3){
                 segundaCarta = true;
         }
-        else if(contadorCarta===5||contadorCarta===6){
+        else if(contadorCarta===4||contadorCarta===5){
             tercerCarta=true;
         }
         if(primerCarta){
@@ -438,18 +542,30 @@ function colocarCarta(b) {
         }else if(tercerCarta){
             document.getElementById("cuarta2").style.zIndex=2;
         }
-          break;
+       
+        analisisCartas[contadorCarta]=true;
+        console.log(analisisCartas);
+         anadirMesaJ2(mano2[0]);
+         primerCarta = false;
+         segundaCarta= false;
+      
+         tercerCarta=false;
+         console.log(`"el contador de Carta es " ${contadorCarta}`);
+         analizamosAfuera(contadorCarta);
+        
+      }
 
-      case "quinta2":
+     if(b.id === "quinta2"){
+        
         document.getElementById("quinta2").style.position = "relative";
         document.getElementById("quinta2").style.bottom = "10em";
-        if(contadorCarta===1||contadorCarta===2){
+        if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
-        else if(contadorCarta===3||contadorCarta===4){
+        else if(contadorCarta===2||contadorCarta===3){
                 segundaCarta = true;
         }
-        else if(contadorCarta===5||contadorCarta===6){
+        else if(contadorCarta===4||contadorCarta===5){
             tercerCarta=true;
         }
         if(primerCarta){
@@ -459,19 +575,30 @@ function colocarCarta(b) {
         }else if(tercerCarta){
             document.getElementById("quinta2").style.zIndex=2;
         }
-          break;
+        analisisCartas[contadorCarta]=true;
+        console.log(analisisCartas);
+         anadirMesaJ2(mano2[1]);
+         primerCarta = false;
+         segundaCarta= false;
+         tercerCarta=false;
+         console.log(`"el contador de Carta es " ${contadorCarta}`);
+         analizamosAfuera(contadorCarta);
+        
+     }
 
-      case "sexta2":
+     
+     if(b.id === "sexta2"){
+         console.log("PASE POR ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         document.getElementById("sexta2").style.position = "relative";
         document.getElementById("sexta2").style.bottom = "10em";
         document.getElementById("sexta2").style.right="6.2em";
-        if(contadorCarta===1||contadorCarta===2){
+        if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
-        else if(contadorCarta===3||contadorCarta===4){
+        else if(contadorCarta===2||contadorCarta===3){
                 segundaCarta = true;
         }
-        else if(contadorCarta===5||contadorCarta===6){
+        else if(contadorCarta===4||contadorCarta===5){
             tercerCarta=true;
         }
         if(primerCarta){
@@ -481,21 +608,48 @@ function colocarCarta(b) {
         }else if(tercerCarta){
             document.getElementById("sexta2").style.zIndex=2;
         }
-          break;
+        analisisCartas[contadorCarta]=true;
+       console.log(analisisCartas);
+         anadirMesaJ2(mano2[2]);
+         primerCarta = false;
+         segundaCarta= false;
+         tercerCarta=false;
+         console.log(`"el contador de Carta es " ${contadorCarta}`);
+         analizamosAfuera(contadorCarta);
+      
+         
+        }
+      
+       
+          
+  
+ 
+        contadorCarta++;
+    if(contadorCarta===6){
+    console.log(mesaFinal[0][0]);
+    console.log(mesaFinal[0][1]);
+    console.log(mesaFinal[0][2]);
+
+    console.log(mesaFinal[1][0]);
+    console.log(mesaFinal[1][1]);
+    console.log(mesaFinal[1][2]);
+    
+   
+    console.log(mesaFinal);
+    contadorCarta=0;
+    repartir();
+     
   }
-  primerCarta = false;
-  segundaCarta= false;
-  tercerCarta=false;
-  if(contadorCarta===6){
-      repartir();
-  }
+
 }
 
 
 
 
 
+/* analizamos para ver si se reparte bien en consola  */
 console.log(mazo);
+
 /*var contador = 0;
 var numeroFinal = 1300;
 while(contador<numeroFinal){
@@ -506,7 +660,7 @@ contador++;
 
 console.log(mano);
 console.log(mano2);
-
+/*  volvemos a su posicion las cartas a final del turno */
 function backThePosition(){
    
         document.getElementById("primera2").style.position ="relative";
@@ -532,15 +686,313 @@ function backThePosition(){
         document.getElementById("sexta2").style.right="0em";
         
 }
-function repartir() {
-    backThePosition();
-    generarMano();
-    cambiarCartas();
-    contadorCarta=0;
-    /*document.getElementById("botonRepartir").style.display = "none";
-    return false;*/
-    return true;
+
+function crearJugador(n){
+    
+        jugador = new Jugador(n,++contadorDeJugadores);
+    
+        return jugador;
 }
 
-repartir();
 
+function agregarJugadores(){
+    contador=0;
+    
+    document.getElementById("nameJ1Id").innerHTML=`${j1.getNombre}`;
+    document.getElementById("nameJ2Id").innerHTML=`${j2.getNombre}`;
+    jugadores[contador++]=j1;
+    jugadores[contador++]=j2;
+}
+
+
+
+
+
+function activarManoJ1(){
+    contJ1card1 =document.getElementsByClassName('first-top')[0];
+    contJ1card1.style.pointerEvents = "auto";
+    contJ1card2 =document.getElementsByClassName('second-top')[0];
+    contJ1card2.style.pointerEvents = "auto";
+    contJ1card3 =document.getElementsByClassName('third-top')[0];
+    contJ1card3.style.pointerEvents = "auto";
+
+
+}
+
+function activarManoJ2(){
+    contJ2card1 =document.getElementsByClassName('first-down')[0];
+    contJ2card1.style.pointerEvents = "auto";
+    contJ2card2 =document.getElementsByClassName('second-down')[0];
+    contJ2card2.style.pointerEvents = "auto";
+    contJ2card3 =document.getElementsByClassName('third-down')[0];
+    contJ2card3.style.pointerEvents = "auto";
+}
+
+function desactivarManoJ1(){
+    contJ1card1 =document.getElementsByClassName('first-top')[0];
+    contJ1card1.style.pointerEvents = "none";
+    contJ1card2 =document.getElementsByClassName('second-top')[0];
+    contJ1card2.style.pointerEvents = "none";
+    contJ1card3 =document.getElementsByClassName('third-top')[0];
+    contJ1card3.style.pointerEvents = "none";
+    
+}
+function desactivarManoJ2(){
+    contJ2card1 =document.getElementsByClassName('first-down')[0];
+    contJ2card1.style.pointerEvents = "none";
+    contJ2card2 =document.getElementsByClassName('second-down')[0];
+    contJ2card2.style.pointerEvents = "none";
+    contJ2card3 =document.getElementsByClassName('third-down')[0];
+    contJ2card3.style.pointerEvents = "none";
+
+}
+
+/* repartimos cartas y ejecutamos las distintas acciones */
+console.log(j1);
+console.log(j2);
+console.log(jugadores);
+
+
+function repartir() {
+    j1.reinicioPuntos();
+    j2.reinicioPuntos();
+    seRepartio=true;
+    desactivarManoJ2();
+    desactivarManoJ1();
+    console.log("numero carta antes" + contadorCarta);
+    ganadorDePunto=0;
+    contadorCarta = 0;
+    primerCarta = false;
+    segundaCarta = false;
+    tercerCarta = false;
+    turno =0;
+ 
+    
+    mesaFinal=[];
+    contadorMesaJ1=0;
+    contadorMesaJ2=0;
+ 
+    crearArray();
+    
+
+    /*document.getElementById("nameJ1").innerHTML = j1;*/
+  
+    generarMano();
+    cambiarCartas();
+    backThePosition();
+    console.log(mano);
+    console.log(mano2);
+    /*document.getElementById("botonRepartir").style.display = "none";
+    return false;*/
+   
+          
+    if(isMano==1){
+        isMano=2;
+        desactivarManoJ1();
+        activarManoJ2();
+        console.log("numero carta despues" + contadorCarta);
+        return true;
+    }else if(isMano==2){
+        isMano =1;
+        desactivarManoJ2();
+        activarManoJ1();
+        console.log("numero carta despues" + contadorCarta);
+         return true;
+        
+    }
+
+    
+}
+
+
+
+console.log(analisisCartas);
+
+function analizarQueSeRepartieronCartas(){
+        contadorAnalisis=0;
+        for (let index = 1; index < 6; index++) {
+            const element = analisisCartas[index];
+            if(element == true){
+                contadorAnalisis += 1;
+            }
+            
+        }
+        return contadorAnalisis;
+}
+
+
+/*function vemosQueOnda(num){
+ numeroAnalizado = num;
+ console.log(numeroAnalizado + " ANALIZAMOS NUMERO");
+return analizamosAfuera(numeroAnalizado);
+}*/
+
+
+
+
+function analizamosAfuera(numeroAnalizado){
+    
+    console.log("Es mano: " + isMano);
+    if(numeroAnalizado === 0){
+   
+    if(isMano===1 ){
+        desactivarManoJ1();
+        activarManoJ2();
+        
+        }else if(isMano===2){
+            desactivarManoJ2();
+            activarManoJ1();
+        
+        }
+       
+    }else if(numeroAnalizado === 1){
+   
+            console.log(turno);
+            console.log("vemos MAZO completoooooooooooooo  " + mesaFinal[0][turno] + "||" + mesaFinal[1][turno] + "||||||||"+ mesaFinal);
+            ganadorDePunto = ganadorDelPunto();
+            
+            if (ganadorDePunto==1){
+            desactivarManoJ2();
+            activarManoJ1();
+            ganadorPuntoAnterior =1;
+            }
+            if(ganadorDePunto==2){
+                desactivarManoJ1();
+                activarManoJ2();
+                ganadorPuntoAnterior =2;
+            }
+            
+        
+        } else if(numeroAnalizado ===2){
+            turno =1;   
+            if(ganadorPuntoAnterior==1){
+                desactivarManoJ1();
+                activarManoJ2();
+            }
+            if(ganadorPuntoAnterior==2){
+                desactivarManoJ2();
+                activarManoJ1();
+            }
+           
+        }else if(numeroAnalizado ===3){
+            ganadorDePunto =ganadorDelPunto();
+            if(ganadorDePunto==1){
+            desactivarManoJ2();
+            activarManoJ1();
+            ganadorPuntoAnterior =1;
+        }
+        if(ganadorDePunto==2){
+            desactivarManoJ1();
+            activarManoJ2();
+            ganadorPuntoAnterior =2;
+        }
+        console.log(j1.getPuntos+"VEMOS PUNTOS J1111111111111");
+        console.log(j1.getPuntos+"VEMOS PUNTOS J2222222222222");
+        if(j1.getPuntos==2){
+            j1.setPuntaje(2);
+            console.log(j1.getPuntaje+" "+j1.getPuntaje);
+            console.log(j2.getPuntaje+" "+j2.getPuntaje);
+            repartir();
+        }else if(j2.getPuntos==2){
+            j2.setPuntaje(2);
+            console.log(j1.getPuntaje+" "+j1.getPuntaje);
+            console.log(j2.getPuntaje+" "+j2.getPuntaje);
+            repartir();
+        }
+        }else if(numeroAnalizado ===4){
+            ganadorDePunto =ganadorDelPunto();
+            
+            turno = 2;
+            if(ganadorDePunto==1){
+                desactivarManoJ1();
+                activarManoJ2();
+                ganadorPuntoAnterior =1;
+            }
+            if(ganadorDePunto==2){
+                desactivarManoJ2();
+                activarManoJ1();
+                ganadorPuntoAnterior =2;
+            }
+           
+          
+        }else if(numeroAnalizado ===5){
+          
+            
+                repartir();
+          
+        }
+    }
+
+function vaciarArray(){
+   
+        mesaFinal=[];
+        contadorMesaJ1=0;
+        contadorMesaJ2=0;
+}
+function crearArray(){
+for (let index = 0; index < 3; index++) {
+    mesaFinal[index] = new Array(2);
+    
+}
+}
+
+
+function anadirMesaJ1(c){
+    
+        mesaFinal[0][contadorMesaJ1]=c;
+        contadorMesaJ1++;
+}
+function anadirMesaJ2(c){
+
+    mesaFinal[1][contadorMesaJ2]=c;
+    contadorMesaJ2++;
+}
+
+
+    
+
+   
+
+
+function ganadorDelPunto(){
+        if(mesaFinal[0][turno]!=null && mesaFinal[1][turno]!=null){
+                if(mesaFinal[0][turno].getValor>mesaFinal[1][turno].getValor){
+                    console.log(`La carta ${mesaFinal[0][turno]} es la mas alta bro`);
+                    j1.aumentarPunto();
+
+                    return 1;
+                }else if(mesaFinal[1][turno].getValor>mesaFinal[0][turno].getValor) {
+                    console.log(`La carta ${mesaFinal[1][turno]} es la mas alta`);
+                    j2.aumentarPunto();
+                    return 2;
+                }
+        }
+        if(mesaFinal[0][turno]!=null && mesaFinal[1][turno]!=null){
+            if(mesaFinal[0][turno].getValor>mesaFinal[1][turno].getValor){
+                console.log(`La carta ${mesaFinal[0][turno]} es la mas alta bro`);
+                j1.aumentarPunto();
+
+                return 1;
+            }else if(mesaFinal[1][turno].getValor>mesaFinal[0][turno].getValor) {
+                console.log(`La carta ${mesaFinal[1][turno]} es la mas alta`);
+                j2.aumentarPunto();
+                return 2;
+            }
+    }
+    return 0;
+}
+
+
+j1= crearJugador("Batman");
+j2 = crearJugador("Mike");
+agregarJugadores();
+repartir();
+if(isMano===1){
+        
+    desactivarManoJ2();
+    activarManoJ1();
+    }else if(isMano===2){
+  
+    desactivarManoJ1();
+    activarManoJ2();
+    }
