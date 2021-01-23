@@ -19,18 +19,25 @@ let ganadorDePunto=0;
 let analisisCartas = {
 };
 let mesa;
+let cantidadDeCantosEnvido=0;
+let cantidadDeCantosDeTruco=0;
+let puntajeEnvido=0;
+let puntajeTruco=0;
+
 class Jugador{
     nombre;
     puntaje;
     turno;
     codigo;
     puntos;
+    ultimoCanto;
     constructor(nombre,codigo) {
         this.nombre = nombre;
         this.codigo=codigo;
         this.puntaje=0;
         this.turno = false;
         this.puntos = 0;
+        this.ultimoCanto="";
     }
     get getNombre(){
         return this.nombre;
@@ -44,6 +51,12 @@ class Jugador{
     get getTurno(){
         return this.turno;
     }
+    get ultimoCanto(){
+        return this.ultimoCanto;
+    }
+    agregarCanto(s){
+        this.ultimoCanto = s;
+    }
     setPuntos(p){
         this.puntos = p;
     }
@@ -51,7 +64,7 @@ class Jugador{
         this.puntos = 0;
     }
      setPuntaje(t){
-        this.puntaje =t;
+        this.puntaje =this.puntaje+t;
     }
     get getPuntos(){
         return this.puntos;
@@ -422,7 +435,7 @@ if(seRepartio===true){
       if(b.id === "primera2"){
        
         document.getElementById("primera2").style.position = "relative" ;
-        document.getElementById("primera2").style.top = "10em";
+        document.getElementById("primera2").style.top = "14em";
         document.getElementById("primera2").style.left="6.2em";
         
         if(contadorCarta===0||contadorCarta===1){
@@ -458,7 +471,7 @@ if(seRepartio===true){
         if(b.id === "segunda2"){
        
         document.getElementById("segunda2").style.position = "relative" ;
-        document.getElementById("segunda2").style.top = "10em";
+        document.getElementById("segunda2").style.top = "14em";
         if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
@@ -490,7 +503,7 @@ if(seRepartio===true){
      
     if(b.id === "tercera2"){
         document.getElementById("tercera2").style.position = "relative" ;
-        document.getElementById("tercera2").style.top = "10em";
+        document.getElementById("tercera2").style.top = "14em";
         document.getElementById("tercera2").style.right="6.2em";
         if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
@@ -524,7 +537,7 @@ if(seRepartio===true){
 
      if(b.id === "cuarta2"){
         document.getElementById("cuarta2").style.position = "relative" ;
-        document.getElementById("cuarta2").style.bottom = "10em";
+        document.getElementById("cuarta2").style.bottom = "14em";
         document.getElementById("cuarta2").style.left="6.2em";
         if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
@@ -558,7 +571,7 @@ if(seRepartio===true){
      if(b.id === "quinta2"){
         
         document.getElementById("quinta2").style.position = "relative";
-        document.getElementById("quinta2").style.bottom = "10em";
+        document.getElementById("quinta2").style.bottom = "14em";
         if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
         }
@@ -590,7 +603,7 @@ if(seRepartio===true){
      if(b.id === "sexta2"){
          console.log("PASE POR ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         document.getElementById("sexta2").style.position = "relative";
-        document.getElementById("sexta2").style.bottom = "10em";
+        document.getElementById("sexta2").style.bottom = "14em";
         document.getElementById("sexta2").style.right="6.2em";
         if(contadorCarta===0||contadorCarta===1){
             primerCarta=true;
@@ -706,7 +719,38 @@ function agregarJugadores(){
 
 
 
-
+function activarEnvidoJ1(){
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvidoJ1')[0];
+    contJ1BotEnvido.style.pointerEvents = "auto";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvidoJ1')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "auto";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvidoJ1')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "auto";
+}
+function activarEnvidoJ2(){
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvido')[0];
+    contJ1BotEnvido.style.pointerEvents = "auto";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvido')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "auto";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvido')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "auto";
+}
+function desactivarEnvidoJ1(){
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvidoJ1')[0];
+    contJ1BotEnvido.style.pointerEvents = "none";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvidoJ1')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "none";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvidoJ1')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "none";
+}
+function desactivarEnvidoJ2(){
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvido')[0];
+    contJ1BotEnvido.style.pointerEvents = "none";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvido')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "none";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvido')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "none";
+}
 
 function activarManoJ1(){
     contJ1card1 =document.getElementsByClassName('first-top')[0];
@@ -715,7 +759,15 @@ function activarManoJ1(){
     contJ1card2.style.pointerEvents = "auto";
     contJ1card3 =document.getElementsByClassName('third-top')[0];
     contJ1card3.style.pointerEvents = "auto";
-
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvidoJ1')[0];
+    contJ1BotEnvido.style.pointerEvents = "auto";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvidoJ1')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "auto";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvidoJ1')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "auto";
+    contJ1BotTruco= document.getElementsByClassName('botonTrucoJ1')[0];
+    contJ1BotTruco.style.pointerEvents = "auto";
+   
 
 }
 
@@ -726,6 +778,16 @@ function activarManoJ2(){
     contJ2card2.style.pointerEvents = "auto";
     contJ2card3 =document.getElementsByClassName('third-down')[0];
     contJ2card3.style.pointerEvents = "auto";
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvido')[0];
+    contJ1BotEnvido.style.pointerEvents = "auto";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvido')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "auto";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvido')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "auto";
+    contJ1BotTruco= document.getElementsByClassName('botonTruco')[0];
+    contJ1BotTruco.style.pointerEvents = "auto";
+   
+
 }
 
 function desactivarManoJ1(){
@@ -735,6 +797,18 @@ function desactivarManoJ1(){
     contJ1card2.style.pointerEvents = "none";
     contJ1card3 =document.getElementsByClassName('third-top')[0];
     contJ1card3.style.pointerEvents = "none";
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvidoJ1')[0];
+    contJ1BotEnvido.style.pointerEvents = "none";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvidoJ1')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "none";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvidoJ1')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "none";
+    contJ1BotTruco= document.getElementsByClassName('botonTrucoJ1')[0];
+    contJ1BotTruco.style.pointerEvents = "none";
+ 
+ 
+
+   
     
 }
 function desactivarManoJ2(){
@@ -744,6 +818,17 @@ function desactivarManoJ2(){
     contJ2card2.style.pointerEvents = "none";
     contJ2card3 =document.getElementsByClassName('third-down')[0];
     contJ2card3.style.pointerEvents = "none";
+   
+    contJ1BotEnvido= document.getElementsByClassName('botonEnvido')[0];
+    contJ1BotEnvido.style.pointerEvents = "none";
+    contJ1BotRealEnvido= document.getElementsByClassName('botonRealEnvido')[0];
+    contJ1BotRealEnvido.style.pointerEvents = "none";
+    contJ1BotFaltaEnvido= document.getElementsByClassName('botonFaltaEnvido')[0];
+    contJ1BotFaltaEnvido.style.pointerEvents = "none";
+    contJ1BotTruco= document.getElementsByClassName('botonTruco')[0];
+    contJ1BotTruco.style.pointerEvents = "none";
+   
+
 
 }
 
@@ -753,7 +838,41 @@ console.log(j2);
 console.log(jugadores);
 
 
+
 function repartir() {
+
+    console.log("PUNTAJE J1: "+ j1.getPuntaje + "\n" + "PUNTAJE J2: " + j2.getPuntaje);
+
+    j1.agregarCanto("");
+    j2.agregarCanto("");
+    document.getElementById("paqueteTrucoJ1").style.display="flex";
+    document.getElementById("paqueteTrucoJ2").style.display="flex";
+    document.getElementById("trucoJ1Boton").style.display="flex";
+    document.getElementById("trucoJ2Boton").style.display="flex";
+    document.getElementById("reTrucoJ1Boton").style.display="none";
+    document.getElementById("reTrucoJ2Boton").style.display="none";
+    document.getElementById("valeCuatroJ1Boton").style.display="none";
+    document.getElementById("valeCuatroJ2Boton").style.display="none";
+
+
+    document.getElementById("paqueteEnvidoJ1").style.display="flex";
+    document.getElementById("paqueteEnvidoJ2").style.display="flex";
+    document.getElementById("realEnvidoJ1Boton").style.display="flex";
+    document.getElementById("realEnvidoJ2Boton").style.display="flex";
+    document.getElementById("envidoJ2Boton").style.display="flex";
+    document.getElementById("envidoJ1Boton").style.display="flex";
+
+    
+    
+ 
+
+    document.getElementById("botonQuieroJ2").style.display="none";
+    document.getElementById("botonNoQuieroJ2").style.display="none";
+
+    document.getElementById("botonQuieroJ1").style.display="none";
+    document.getElementById("botonNoQuieroJ1").style.display="none";
+    
+    cantidadDeCantosEnvido=0;
     j1.reinicioPuntos();
     j2.reinicioPuntos();
     seRepartio=true;
@@ -766,8 +885,10 @@ function repartir() {
     segundaCarta = false;
     tercerCarta = false;
     turno =0;
- 
-    
+
+    cantidadDeCantosDeTruco = 0;
+    puntajeTruco =0;
+    puntajeEnvido = 0;
     mesaFinal=[];
     contadorMesaJ1=0;
     contadorMesaJ2=0;
@@ -850,7 +971,7 @@ function analizamosAfuera(numeroAnalizado){
             console.log(turno);
             console.log("vemos MAZO completoooooooooooooo  " + mesaFinal[0][turno] + "||" + mesaFinal[1][turno] + "||||||||"+ mesaFinal);
             ganadorDePunto = ganadorDelPunto();
-            
+            console.log(ganadorDePunto);
             if (ganadorDePunto==1){
             desactivarManoJ2();
             activarManoJ1();
@@ -861,8 +982,20 @@ function analizamosAfuera(numeroAnalizado){
                 activarManoJ2();
                 ganadorPuntoAnterior =2;
             }
-            
-        
+            if(ganadorDePunto==5){
+                if(isMano==1){
+                    desactivarManoJ2();
+                    activarManoJ1();
+                    ganadorPuntoAnterior=0;
+                }
+                if(isMano==2){
+                    desactivarManoJ1();
+                    activarManoJ2();
+                    ganadorPuntoAnterior=0;
+                }
+            }
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("paqueteEnvidoJ2").style.display="none";
         } else if(numeroAnalizado ===2){
             turno =1;   
             if(ganadorPuntoAnterior==1){
@@ -873,56 +1006,150 @@ function analizamosAfuera(numeroAnalizado){
                 desactivarManoJ2();
                 activarManoJ1();
             }
+            // son iguales las cartas
+            if(ganadorPuntoAnterior==0){
+                if(isMano===1){
+                    desactivarManoJ1();
+                    activarManoJ2();
+                   
+                }
+                if(isMano===2){
+                    desactivarManoJ2();
+                    activarManoJ1();
+                
+                }
+            }
            
         }else if(numeroAnalizado ===3){
             ganadorDePunto =ganadorDelPunto();
+
             if(ganadorDePunto==1){
             desactivarManoJ2();
             activarManoJ1();
-            ganadorPuntoAnterior =1;
+       
+           
         }
         if(ganadorDePunto==2){
             desactivarManoJ1();
             activarManoJ2();
-            ganadorPuntoAnterior =2;
+      
+           
         }
-        console.log(j1.getPuntos+"VEMOS PUNTOS J1111111111111");
-        console.log(j1.getPuntos+"VEMOS PUNTOS J2222222222222");
-        if(j1.getPuntos==2){
-            j1.setPuntaje(2);
+        console.log(j1.getPuntos+"VEMOS PUNTOS ");
+        console.log(j2.getPuntos+"VEMOS PUNTOS ");
+        if(j1.getPuntos===2){
+            sumaPuntajeTruco(1);
             console.log(j1.getPuntaje+" "+j1.getPuntaje);
             console.log(j2.getPuntaje+" "+j2.getPuntaje);
             repartir();
-        }else if(j2.getPuntos==2){
-            j2.setPuntaje(2);
+        }else if(j2.getPuntos===2){
+            sumaPuntajeTruco(2);
             console.log(j1.getPuntaje+" "+j1.getPuntaje);
             console.log(j2.getPuntaje+" "+j2.getPuntaje);
             repartir();
         }
-        }else if(numeroAnalizado ===4){
-            ganadorDePunto =ganadorDelPunto();
-            
-            turno = 2;
-            if(ganadorDePunto==1){
-                desactivarManoJ1();
-                activarManoJ2();
-                ganadorPuntoAnterior =1;
-            }
-            if(ganadorDePunto==2){
+        if(ganadorDePunto ===5 &&( j1.getPuntos ===0 && j2.getPuntos===0)){
+            if(isMano===1){
                 desactivarManoJ2();
                 activarManoJ1();
-                ganadorPuntoAnterior =2;
+               
             }
+            if(isMano===2){
+                desactivarManoJ1();
+                activarManoJ2();
+            
+            }
+        }else if(ganadorDePunto ===5 && (j1.getPuntos===1|| j2.getPuntos===1)){
+            if(j1.getPuntos===1){
+                sumaPuntajeTruco(1);
+            }else{
+                sumaPuntajeTruco(2);
+            }
+            repartir();
+        }else if(ganadorPuntoAnterior===0 && (j1.getPuntos===1 || j2.getPuntos===1)){
+            if(j1.getPuntos===1){
+                sumaPuntajeTruco(1);
+            }else{
+                sumaPuntajeTruco(2);
+            }
+            repartir();
+        }
+
+
+        }else if(numeroAnalizado ===4){
+            turno =2;
+            if(ganadorDePunto ===1){
+                desactivarManoJ1();
+                activarManoJ2();
+            }else if(ganadorDePunto==2){
+                desactivarManoJ2();
+                activarManoJ1();
+            }else if(ganadorDePunto ===5){
+                if(isMano===1){
+                    desactivarManoJ1();
+                    activarManoJ2();
+                   
+                }
+                if(isMano===2){
+                    desactivarManoJ2();
+                    activarManoJ1();
+                
+                }
+            }
+            
+          
            
           
         }else if(numeroAnalizado ===5){
-          
+            ganadorDePunto =ganadorDelPunto();
+            if(ganadorDePunto==1){
+                sumaPuntajeTruco(1);
+             
+            }
+            if(ganadorDePunto==2){
+                sumaPuntajeTruco(2);
+              
+            }
             
                 repartir();
           
         }
     }
 
+
+function sumaPuntajeTruco(nJ){
+    if(nJ===1){
+            if(cantidadDeCantosDeTruco===0){
+                j1.setPuntaje(1);
+                
+            }
+            if(cantidadDeCantosDeTruco ===1){
+                j1.setPuntaje(2);
+             
+            }else if(cantidadDeCantosDeTruco === 2){
+                j1.setPuntaje(3);
+                
+            }
+            else if(cantidadDeCantosDeTruco === 3){
+                j1.setPuntaje(4);    
+          
+            }
+            document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+    }else if(nJ ===2){
+        if(cantidadDeCantosDeTruco===0){
+            j2.setPuntaje(1);
+        }
+        if(cantidadDeCantosDeTruco ===1){
+            j2.setPuntaje(2);
+        }else if(cantidadDeCantosDeTruco === 2){
+            j2.setPuntaje(3);
+        }
+        else if(cantidadDeCantosDeTruco === 3){
+            j2.setPuntaje(4);    
+        }
+        document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+    }
+}
 function vaciarArray(){
    
         mesaFinal=[];
@@ -955,7 +1182,7 @@ function anadirMesaJ2(c){
 
 
 function ganadorDelPunto(){
-        if(mesaFinal[0][turno]!=null && mesaFinal[1][turno]!=null){
+        if((mesaFinal[0][turno]!=null && mesaFinal[1][turno]!=null) && (mesaFinal[0][turno].getValor!=mesaFinal[1][turno].getValor)){
                 if(mesaFinal[0][turno].getValor>mesaFinal[1][turno].getValor){
                     console.log(`La carta ${mesaFinal[0][turno]} es la mas alta bro`);
                     j1.aumentarPunto();
@@ -967,11 +1194,10 @@ function ganadorDelPunto(){
                     return 2;
                 }
         }
-        if(mesaFinal[0][turno]!=null && mesaFinal[1][turno]!=null){
+        if((mesaFinal[0][turno]!=null && mesaFinal[1][turno]!=null) && (mesaFinal[0][turno].getValor!=mesaFinal[1][turno].getValor)){
             if(mesaFinal[0][turno].getValor>mesaFinal[1][turno].getValor){
                 console.log(`La carta ${mesaFinal[0][turno]} es la mas alta bro`);
                 j1.aumentarPunto();
-
                 return 1;
             }else if(mesaFinal[1][turno].getValor>mesaFinal[0][turno].getValor) {
                 console.log(`La carta ${mesaFinal[1][turno]} es la mas alta`);
@@ -979,7 +1205,809 @@ function ganadorDelPunto(){
                 return 2;
             }
     }
-    return 0;
+    if((mesaFinal[0][turno]!=null && mesaFinal[1][turno]!=null) && ( mesaFinal[0][turno].getValor==mesaFinal[1][turno].getValor)){
+        if(mesaFinal[0][turno].getValor==mesaFinal[1][turno].getValor){
+            console.log(`Las cartas ${mesaFinal[0][turno]} y ${mesaFinal[1][turno]} son iguales`);
+            
+            console.log("CARTAS IGUALES!!!!!!!!!!!");
+            return 5;
+        }
+    }
+    
+}
+
+
+function cantarEnvido(J){
+    if(J.id==="cantaEnvidoJ2"){
+        activarEnvidoJ1();
+        document.getElementById("paqueteEnvidoJ2").style.display="none";
+        document.getElementById("paqueteTrucoJ2").style.display="none";
+        document.getElementById("botonQuieroJ1").style.display="flex";
+        document.getElementById("botonNoQuieroJ1").style.display="flex";
+        document.getElementById("paqueteTrucoJ1").style.display="none";
+        
+       
+        console.log("Envido");
+        cantidadDeCantosEnvido++;
+        console.log(j2.getUltimoCanto);
+        console.log(cantidadDeCantosEnvido);
+        if(j1.ultimoCanto==="ENVIDO"){
+            j2.agregarCanto("ENVIDO");
+            document.getElementById("botonQuieroJ2").style.display="none";
+            document.getElementById("botonNoQuieroJ2").style.display="none";
+            document.getElementById("botonQuieroJ1").style.display="flex";
+            document.getElementById("botonNoQuieroJ1").style.display="flex";
+            document.getElementById("paqueteEnvidoJ1").style.display="flex";
+            document.getElementById("envidoJ2Boton").style.display="none";
+            document.getElementById("envidoJ1Boton").style.display="none";
+
+
+        }else if(j1.ultimoCanto===""){
+            j2.agregarCanto("ENVIDO");
+            document.getElementById("botonQuieroJ2").style.display="none";
+            document.getElementById("botonNoQuieroJ2").style.display="none";
+            document.getElementById("botonQuieroJ1").style.display="flex";
+            document.getElementById("botonNoQuieroJ1").style.display="flex";
+            document.getElementById("paqueteEnvidoJ1").style.display="flex";
+            document.getElementById("envidoJ2Boton").style.display="flex";
+            document.getElementById("envidoJ1Boton").style.display="flex";
+        }
+    }else if(J.id==="cantaEnvidoJ1"){
+        activarEnvidoJ2();
+  
+        document.getElementById("paqueteEnvidoJ1").style.display="none";
+        document.getElementById("paqueteTrucoJ1").style.display="none";
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+        document.getElementById("paqueteTrucoJ2").style.display="none";
+     
+        console.log(j1.getUltimoCanto);
+        cantidadDeCantosEnvido++;
+        console.log("Envido");
+        console.log(cantidadDeCantosEnvido);
+        if(j2.ultimoCanto==="ENVIDO"){
+            j1.agregarCanto("ENVIDO");
+            document.getElementById("botonQuieroJ1").style.display="none";
+            document.getElementById("botonNoQuieroJ1").style.display="none";
+            document.getElementById("botonQuieroJ2").style.display="flex";
+            document.getElementById("botonNoQuieroJ2").style.display="flex";
+            document.getElementById("paqueteEnvidoJ2").style.display="flex";
+            document.getElementById("envidoJ2Boton").style.display="none";
+            document.getElementById("envidoJ1Boton").style.display="none";
+
+        }else if(j2.ultimoCanto === ""){
+            j1.agregarCanto("ENVIDO");
+            document.getElementById("botonQuieroJ1").style.display="none";
+            document.getElementById("botonNoQuieroJ1").style.display="none";
+            document.getElementById("botonQuieroJ2").style.display="flex";
+            document.getElementById("botonNoQuieroJ2").style.display="flex";
+            document.getElementById("paqueteEnvidoJ2").style.display="flex";
+            document.getElementById("envidoJ2Boton").style.display="flex";
+            document.getElementById("envidoJ1Boton").style.display="flex";
+        }
+        
+    }
+}
+
+function cantarRealEnvido(J){
+ 
+    if(J.id==="cantaRealEnvidoJ2"){
+        
+        cantidadDeCantosEnvido++;
+        console.log("Real envido");
+        /*que hayan cantado los dos realEnvido*/ 
+        /* PUNTAJE ESPECIAL */
+        document.getElementById("botonQuieroJ2").style.display="none";
+        document.getElementById("botonNoQuieroJ2").style.display="none";
+        document.getElementById("paqueteTrucoJ1").style.display="none";
+            document.getElementById("paqueteTrucoJ2").style.display="none";
+            document.getElementById("paqueteEnvidoJ2").style.display="none";    
+             document.getElementById("botonQuieroJ1").style.display="flex";
+            document.getElementById("botonNoQuieroJ1").style.display="flex";
+        if(j1.ultimoCanto==="ENVIDO" && j2.ultimoCanto==="ENVIDO"){
+            j2.agregarCanto("REALENVIDO");
+            document.getElementById("paqueteEnvidoJ1").style.display="flex";
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("realEnvidoJ1Boton").style.display="none";
+           document.getElementById("faltaEnvidoJ1Boton").style.display="flex";
+           document.getElementById("botonQuieroJ1").style.display="flex";
+        document.getElementById("botonNoQuieroJ1").style.display="flex";
+        }else if(j1.ultimoCanto==="ENVIDO" && j2.ultimoCanto===""){
+            j2.agregarCanto("REALENVIDO");
+            /* PUNTAJE ESPECIAL */
+            document.getElementById("paqueteEnvidoJ1").style.display="flex";
+           document.getElementById("paqueteEnvidoJ1").style.display="none";
+           document.getElementById("realEnvidoJ1Boton").style.display="none";
+            document.getElementById("faltaEnvidoJ1Boton").style.display="flex";
+            document.getElementById("botonQuieroJ1").style.display="flex";
+        document.getElementById("botonNoQuieroJ1").style.display="flex";
+        }else if(j1.ultimoCanto==="" && j2.ultimoCanto===""){
+            j2.agregarCanto("REALENVIDO");
+            document.getElementById("paqueteEnvidoJ1").style.display="flex";
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("realEnvidoJ1Boton").style.display="none";
+            document.getElementById("faltaEnvidoJ1Boton").style.display="flex";
+            document.getElementById("botonQuieroJ1").style.display="flex";
+        document.getElementById("botonNoQuieroJ1").style.display="flex";
+        }else if(j2.ultimoCanto==="ENVIDO" && j1.ultimoCanto===""){
+            j2.agregarCanto("REALENVIDO");
+            document.getElementById("paqueteEnvidoJ1").style.display="flex";
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("realEnvidoJ1Boton").style.display="none";
+             document.getElementById("faltaEnvidoJ1Boton").style.display="flex";
+             document.getElementById("botonQuieroJ1").style.display="flex";
+         document.getElementById("botonNoQuieroJ1").style.display="flex";
+        }
+
+
+    }else if(J.id==="cantaRealEnvidoJ1"){
+      
+        console.log("Real Envido");
+        cantidadDeCantosEnvido++;
+        document.getElementById("botonQuieroJ1").style.display="none";
+        document.getElementById("botonNoQuieroJ1").style.display="none";
+        document.getElementById("paqueteEnvidoJ1").style.display="none";
+        document.getElementById("paqueteTrucoJ1").style.display="none";
+            document.getElementById("paqueteTrucoJ2").style.display="none";
+  
+    if(j1.ultimoCanto==="ENVIDO" && j2.ultimoCanto==="ENVIDO"){
+        j1.agregarCanto("REALENVIDO");
+        document.getElementById("paqueteEnvidoJ2").style.display="flex";
+        document.getElementById("envidoJ2Boton").style.display="none";
+        document.getElementById("realEnvidoJ2Boton").style.display="none";
+
+        document.getElementById("faltaEnvidoJ2Boton").style.display="flex";
+         
+        
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+
+    }else if(j2.ultimoCanto==="ENVIDO" && j1.ultimoCanto===""){
+        j1.agregarCanto("REALENVIDO");
+        /* PUNTAJE ESPECIAL */
+        document.getElementById("paqueteEnvidoJ2").style.display="flex";
+        document.getElementById("envidoJ2Boton").style.display="none";
+        document.getElementById("realEnvidoJ2Boton").style.display="none";
+        document.getElementById("faltaEnvidoJ2Boton").style.display="flex";
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+    }else if(j1.ultimoCanto==="" && j2.ultimoCanto===""){
+        j1.agregarCanto("REALENVIDO");
+        document.getElementById("paqueteEnvidoJ2").style.display="flex";
+        document.getElementById("envidoJ2Boton").style.display="none";
+        document.getElementById("realEnvidoJ2Boton").style.display="none";
+        document.getElementById("faltaEnvidoJ2Boton").style.display="flex";
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+    }else if(j2.ultimoCanto==="" && j1.ultimoCanto==="ENVIDO"){
+        document.getElementById("paqueteEnvidoJ2").style.display="flex";
+        document.getElementById("envidoJ2Boton").style.display="none";
+        document.getElementById("realEnvidoJ2Boton").style.display="none";
+        document.getElementById("faltaEnvidoJ2Boton").style.display="flex";
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+    }
+    }
+}
+
+function cantarFaltaEnvido(J){
+    if(J.id==="cantaFaltaEnvidoJ2"){
+        j2.agregarCanto("FALTAENVIDO");
+        cantidadDeCantosEnvido++;
+        console.log("Falta envido");
+    }else if(J.id==="cantaFaltaEnvidoJ1"){
+        j1.agregarCanto("FALTAENVIDO");
+        cantidadDeCantosEnvido++;
+        console.log("Falta Envido");
+    }
+}
+function cantarTruco(J){
+    cantidadDeCantosDeTruco++;
+    if(J.id==="cantaTrucoJ2"){
+        
+        j2.agregarCanto("TRUCO");
+        console.log("Truco!!");
+        document.getElementById("paqueteEnvidoJ1").style.display="none";
+        document.getElementById("paqueteEnvidoJ2").style.display="none";
+
+        document.getElementById("reTrucoJ1Boton").style.display="flex";
+        document.getElementById("trucoJ2Boton").style.display="none";
+        document.getElementById("trucoJ1Boton").style.display="none";
+  
+        document.getElementById("botonQuieroJ1").style.display="flex";
+        document.getElementById("botonNoQuieroJ1").style.display="flex";
+    
+        
+    }else if(J.id==="cantaTrucoJ1"){
+        j1.agregarCanto("TRUCO");
+        console.log("Truco");
+        document.getElementById("reTrucoJ2Boton").style.display="flex";
+        document.getElementById("trucoJ2Boton").style.display="none";
+        document.getElementById("trucoJ1Boton").style.display="none";
+        document.getElementById("paqueteEnvidoJ1").style.display="none";
+        document.getElementById("paqueteEnvidoJ2").style.display="none";
+     
+
+        
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+    }
+}
+function cantarReTruco(r){
+    cantidadDeCantosDeTruco++;
+    if(r.id === "cantaReTrucoJ2"){
+        j2.agregarCanto("RETRUCO");
+        document.getElementById("reTrucoJ2Boton").style.display="none";
+        document.getElementById("reTrucoJ1Boton").style.display="none";
+        document.getElementById("valeCuatroJ1Boton").style.display="flex";
+
+        document.getElementById("botonQuieroJ1").style.display="flex";
+        document.getElementById("botonNoQuieroJ1").style.display="flex";
+        
+        document.getElementById("botonQuieroJ2").style.display="none";
+        document.getElementById("botonNoQuieroJ2").style.display="none";
+    }
+    else if(r.id==="cantaReTrucoJ1"){
+        j1.agregarCanto("RETRUCO");
+        document.getElementById("reTrucoJ2Boton").style.display="none";
+        document.getElementById("reTrucoJ1Boton").style.display="none";
+
+        document.getElementById("valeCuatroJ2Boton").style.display="flex";
+
+        document.getElementById("botonQuieroJ1").style.display="none";
+        document.getElementById("botonNoQuieroJ1").style.display="none";
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+    }
+}
+
+
+function cantarValeCuatro(v){
+    cantidadDeCantosDeTruco++;
+    if(v.id==="cantaValeCuatroJ2"){
+        j2.agregarCanto("RETRUCO");
+        document.getElementById("valeCuatroJ2Boton").style.display="none";
+        document.getElementById("botonQuieroJ1").style.display="flex";
+        document.getElementById("botonNoQuieroJ1").style.display="flex";
+        document.getElementById("botonQuieroJ2").style.display="none";
+        document.getElementById("botonNoQuieroJ2").style.display="none";
+    }
+    if(v.id==="cantaValeCuatroJ1"){
+        j1.agregarCanto("RETRUCO");
+        document.getElementById("valeCuatroJ1Boton").style.display="none";
+        document.getElementById("botonQuieroJ1").style.display="none";
+        document.getElementById("botonNoQuieroJ1").style.display="none";
+        document.getElementById("botonQuieroJ2").style.display="flex";
+        document.getElementById("botonNoQuieroJ2").style.display="flex";
+    }
+}
+
+function irAlMazo(J){
+        if(J.id==="irAlMazoJ2"){
+            console.log("Me voy al mazo");
+            repartir();
+        }else if(J.id==="irAlMazoJ1"){
+            console.log("Me voy al mazo");
+            repartir();
+        }
+}
+
+function analizarQuiero(a){
+    console.log("cantidad de cantos de truco    "+cantidadDeCantosDeTruco);
+    console.log("cantidad de cantos de envido    "+cantidadDeCantosEnvido);
+    if(a.id==="cantaQuieroJ1"){
+
+        document.getElementById("botonQuieroJ1").style.display="none";
+        document.getElementById("botonNoQuieroJ1").style.display="none";
+
+        console.log(j1.getNombre+ " quiere!!");
+         
+      
+        if(j2.ultimoCanto === "TRUCO" || j2.ultimoCanto === "RETRUCO" || j2.ultimoCanto === "VALECUATRO"){
+            document.getElementById("botonQuieroJ1").style.display="none";
+            document.getElementById("botonNoQuieroJ1").style.display="none";
+            if(j2.ultimoCanto ==="VALECUATRO"){
+                puntajeTruco =4;
+            }
+            if(j2.ultimoCanto==="RETRUCO"){
+                puntajeTruco=3;
+            }
+            if(j2.ultimoCanto==="TRUCO"){
+                puntajeTruco=2;
+            }
+
+        }
+        if(j2.ultimoCanto==="ENVIDO" ||j2.ultimoCanto==="REALENVIDO" || j2.ultimoCanto==="FALTAENVIDO"){
+       
+            document.getElementById("paqueteTrucoJ1").style.display ="flex";
+            document.getElementById("paqueteTrucoJ2").style.display ="flex";
+
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("faltaEnvidoJ1Boton").style.display = "none";
+            if(analizarGanadorDeEnvido()===1){
+               
+                if(cantidadDeCantosEnvido === 1 &&( j2.ultimoCanto === "ENVIDO" || j1.ultimoCanto ==="ENVIDO")){
+                   j1.setPuntaje(2);
+                }else if(cantidadDeCantosEnvido === 1 && (j2.ultimoCanto === "REALENVIDO" || j1.ultimoCanto === "REALENVIDO")){
+                    j1.setPuntaje(3); 
+                }else if(cantidadDeCantosEnvido === 2 && (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto === "ENVIDO")){
+                    j1.setPuntaje(4);
+                }
+                else if(cantidadDeCantosEnvido === 2 && ((j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                    j1.setPuntaje(5);         
+                }   
+                else if(cantidadDeCantosEnvido === 3 && ((j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                    j1.setPuntaje(7);         
+                }   
+                document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+                console.log("GANO ENVIDO JUGADOR " + j1.getNombre + " con " + puntosEnvido(1)+ " el PUNTAJE DEL JUGADOR ES: " + j1.getPuntaje);
+
+            }else {
+                     
+                if(cantidadDeCantosEnvido === 1 &&( j1.ultimoCanto === "ENVIDO" || j2.ultimoCanto ==="ENVIDO")){
+                    j2.setPuntaje(2);
+                 }else if(cantidadDeCantosEnvido === 1 && (j1.ultimoCanto === "REALENVIDO" || j2.ultimoCanto === "REALENVIDO")){
+                     j2.setPuntaje(3); 
+                 }else if(cantidadDeCantosEnvido === 2 &&( j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto === "ENVIDO")){
+                     j2.setPuntaje(4);
+                 }
+                 else if(cantidadDeCantosEnvido === 2 &&((j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                     j2.setPuntaje(5);         
+                 }   
+                 else if(cantidadDeCantosEnvido === 3 && ((j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                     j2.setPuntaje(7);         
+                 }   
+                 document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+                console.log("GANO ENVIDO JUGADOR " + j2.getNombre + " con " + puntosEnvido(2) + " el PUNTAJE DEL JUGADOR ES: " + j2.getPuntaje);
+            }
+            
+        }
+        
+
+    }else if(a.id==="cantaNoQuieroJ1"){
+        console.log(j1.getNombre+" No quiere");
+        document.getElementById("botonQuieroJ1").style.display="none";
+        document.getElementById("botonNoQuieroJ1").style.display="none";
+        if(j2.ultimoCanto === "TRUCO" || j2.ultimoCanto === "RETRUCO" || j2.ultimoCanto === "VALECUATRO"){
+            if(j2.ultimoCanto ==="VALECUATRO"){
+                puntajeTruco =3;
+                j2.setPuntaje(3);
+                document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+            }
+            if(j2.ultimoCanto==="RETRUCO"){
+                puntajeTruco=2;
+                j2.setPuntaje(2);
+                document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+            }
+            if(j2.ultimoCanto==="TRUCO" && cantidadDeCantosEnvido>0){
+                puntajeTruco=1;
+                j2.setPuntaje(1);
+                document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+            }
+            if(j2.ultimoCanto==="TRUCO" &&  cantidadDeCantosEnvido===0 &&(mesaFinal[1][0]===null || mesaFinal[0][0]===null)){
+                j2.setPuntaje(2);
+                document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+            }else if(j2.ultimoCanto==="TRUCO" &&  cantidadDeCantosEnvido===0 && (mesaFinal[1][0]!=null && mesaFinal[0][0]!=null)){
+                j2.setPuntaje(1);
+                document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+            }
+            repartir();
+        }
+        else if(j2.ultimoCanto==="ENVIDO" || j2.ultimoCanto === "REALENVIDO" || j2.ultimoCanto==="FALTAENVIDO"){
+            document.getElementById("paqueteTrucoJ1").style.display ="flex";
+            document.getElementById("paqueteTrucoJ2").style.display ="flex";
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("paqueteEnvidoJ2").style.display="none";
+            if(cantidadDeCantosEnvido === 1 && (j2.ultimoCanto ==="ENVIDO")){
+                j2.setPuntaje(1);
+             }else if(cantidadDeCantosEnvido === 1 && (j2.ultimoCanto === "REALENVIDO")){
+                 j2.setPuntaje(1); 
+             }else if(cantidadDeCantosEnvido === 2 && (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto === "ENVIDO")){
+                 j2.setPuntaje(2);
+             }
+             else if(cantidadDeCantosEnvido === 2 &&( (j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                 j2.setPuntaje(2);         
+             }   
+             else if(cantidadDeCantosEnvido === 3 &&( (j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                 j2.setPuntaje(4);         
+             }   
+             document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+             console.log("El otro jugador no quiso gano  " + j2.getNombre + " con " + puntosEnvido(2)+ " el PUNTAJE DEL JUGADOR ES: " + j2.getPuntaje);
+        }
+        }
+
+    
+    if(a.id==="cantaQuieroJ2"){
+        console.log(j2.getNombre+ " quiere!!");
+        document.getElementById("botonQuieroJ2").style.display="none";
+        document.getElementById("botonNoQuieroJ2").style.display="none";
+        if(j1.ultimoCanto === "TRUCO" || j1.ultimoCanto === "RETRUCO" || j1.ultimoCanto === "VALECUATRO"){
+            if(j1.ultimoCanto ==="VALECUATRO"){
+                puntajeTruco =4;
+            }
+            if(j1.ultimoCanto==="RETRUCO"){
+                puntajeTruco=3;
+            }
+            if(j1.ultimoCanto==="TRUCO"){
+                puntajeTruco=2;
+            }
+        }
+        if(j1.ultimoCanto==="ENVIDO" ||j1.ultimoCanto==="REALENVIDO" || j1.ultimoCanto==="FALTAENVIDO"){
+            document.getElementById("paqueteTrucoJ1").style.display ="flex";
+            document.getElementById("paqueteTrucoJ2").style.display ="flex";
+
+            document.getElementById("paqueteEnvidoJ2").style.display="none";
+            document.getElementById("faltaEnvidoJ2Boton").style.display = "none";
+            if(analizarGanadorDeEnvido()===1){
+               
+                if(cantidadDeCantosEnvido === 1 && (j2.ultimoCanto === "ENVIDO" || j1.ultimoCanto ==="ENVIDO")){
+                   j1.setPuntaje(2);
+                }else if(cantidadDeCantosEnvido === 1 && (j2.ultimoCanto === "REALENVIDO" || j1.ultimoCanto === "REALENVIDO")){
+                    j1.setPuntaje(3); 
+                }else if(cantidadDeCantosEnvido === 2 && (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto === "ENVIDO")){
+                    j1.setPuntaje(4);
+                }
+                else if(cantidadDeCantosEnvido === 2 &&( (j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                    j1.setPuntaje(5);         
+                }   
+                else if(cantidadDeCantosEnvido === 3 && ((j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                    j1.setPuntaje(7);         
+                }   
+                document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+                console.log("GANO ENVIDO JUGADOR " + j1.getNombre + " con " + puntosEnvido(1)+ " el PUNTAJE DEL JUGADOR ES: " + j1.getPuntaje);
+
+            }else {
+                     
+                if(cantidadDeCantosEnvido === 1 && (j1.ultimoCanto === "ENVIDO"  || j2.ultimoCanto ==="ENVIDO")){
+                    j2.setPuntaje(2);
+                 }else if(cantidadDeCantosEnvido === 1 && (j1.ultimoCanto === "REALENVIDO" || j2.ultimoCanto === "REALENVIDO")){
+                     j2.setPuntaje(3); 
+                 }else if(cantidadDeCantosEnvido === 2 && (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto === "ENVIDO")){
+                     j2.setPuntaje(4);
+                 }
+                 else if(cantidadDeCantosEnvido === 2 &&( (j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                     j2.setPuntaje(5);         
+                 }   
+                 else if(cantidadDeCantosEnvido === 3 &&( (j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                     j2.setPuntaje(7);         
+                 }   
+                 document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
+                console.log("GANO ENVIDO JUGADOR " + j2.getNombre + " con " + puntosEnvido(2) + " el PUNTAJE DEL JUGADOR ES: " + j2.getPuntaje);
+            }
+            
+        }
+    }else if(a.id==="cantaNoQuieroJ2"){
+        console.log(j2.getNombre+" No quiere");
+    
+        if(j1.ultimoCanto === "TRUCO" || j1.ultimoCanto === "RETRUCO" || j1.ultimoCanto === "VALECUATRO"){
+            if(j1.ultimoCanto ==="VALECUATRO"){
+                puntajeTruco =3;
+                j1.setPuntaje(3);
+                document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+            }
+            if(j1.ultimoCanto==="RETRUCO"){
+                puntajeTruco=2;
+                j1.setPuntaje(2);
+                document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+            }
+            if(j1.ultimoCanto==="TRUCO"  && cantidadDeCantosEnvido>0){
+                puntajeTruco=1;
+                j1.setPuntaje(1);
+                document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+            }
+            if(j1.ultimoCanto==="TRUCO" &&  cantidadDeCantosEnvido===0 && (mesaFinal[1][0]===null || mesaFinal[0][0]===null)){
+                j1.setPuntaje(2);
+                document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+            }else if(j1.ultimoCanto==="TRUCO" &&  cantidadDeCantosEnvido===0 &&  (mesaFinal[1][0]!=null && mesaFinal[0][0]!=null)){
+                j1.setPuntaje(1);
+                document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+            }
+            repartir();
+        }
+            else if(j1.ultimoCanto==="ENVIDO" || j1.ultimoCanto === "REALENVIDO" || j1.ultimoCanto==="FALTAENVIDO"){
+                document.getElementById("paqueteTrucoJ1").style.display ="flex";
+                document.getElementById("paqueteTrucoJ2").style.display ="flex";
+                document.getElementById("botonQuieroJ2").style.display="none";
+                document.getElementById("botonNoQuieroJ2").style.display="none";
+                document.getElementById("paqueteEnvidoJ1").style.display="none";
+                document.getElementById("paqueteEnvidoJ2").style.display="none";
+                
+               
+                    if(cantidadDeCantosEnvido === 1 && (j1.ultimoCanto ==="ENVIDO")){
+                       j1.setPuntaje(1);
+                    }else if(cantidadDeCantosEnvido === 1 && (j1.ultimoCanto === "REALENVIDO")){
+                        j1.setPuntaje(1); 
+                    }else if(cantidadDeCantosEnvido === 2 && (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto === "ENVIDO")){
+                        j1.setPuntaje(2);
+                    }
+                    else if(cantidadDeCantosEnvido === 2 &&( (j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                        j1.setPuntaje(2);         
+                    }   
+                    else if(cantidadDeCantosEnvido === 3 && ((j1.ultimoCanto === "ENVIDO" && j2.ultimoCanto === "REALENVIDO") || (j2.ultimoCanto === "ENVIDO" && j1.ultimoCanto==="REALENVIDO"))){
+                        j1.setPuntaje(4);         
+                    }   
+                    document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
+                    console.log("El otro jugador no quiso gano  " + j1.getNombre + " con " + puntosEnvido(1)+ " el PUNTAJE DEL JUGADOR ES: " + j1.getPuntaje);
+    
+              
+                         
+                   
+                
+            
+            }
+    
+    }
+}
+
+function puntosEnvido(numJugador){
+    resultadoEnvido =0;
+    resultadoEnvido2 =0;
+    resultadoAnteriorEnvido=0;
+    envido = false;
+    if(numJugador === 1){
+    if(mano[0].getNombre===mano[1].getNombre){
+        envido = true;
+        if(mano[0].getNumero<=7&&mano[1].getNumero<=7){
+            resultadoEnvido = parseInt(mano[0].getNumero)+ parseInt(mano[1].getNumero) + 20;
+            resultadoAnteriorEnvido = resultadoEnvido;
+            
+        }
+        if((mano[0].getNumero<=12 && mano[0].getNumero>=10) && mano[1].getNumero<=7){
+            resultadoEnvido = mano[1].getNumero + 20;
+            resultadoAnteriorEnvido = resultadoEnvido;
+          
+        }
+        if(mano[0].getNumero<=7 && (mano[1].getNumero<=12 && mano[1].getNumero>=10)){
+            resultadoEnvido = mano[0].getNumero + 20;
+            resultadoAnteriorEnvido = resultadoEnvido;
+        
+        }
+        if((mano[0].getNumero >= 10 && mano[0].getNumero <=12) && (mano[1].getNumero<=12 && mano[1].getNumero>=10)){
+            resultadoEnvido = 20;
+            resultadoAnteriorEnvido = resultadoEnvido;
+         
+        }
+    }
+
+    if(mano[1].getNombre===mano[2].getNombre){
+        envido = true;
+        if(mano[1].getNumero<=7 && mano[2].getNumero<=7){
+         
+            resultadoEnvido = mano[1].getNumero + mano[2].getNumero + 20;
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano[1].getNumero<=12 && mano[1].getNumero>=10) && mano[2].getNumero<=7){
+            resultadoEnvido = mano[2].getNumero + 20;
+       
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+        if(mano[1].getNumero<=7 && (mano[2].getNumero<=12 && mano[2].getNumero>=10)){
+            resultadoEnvido = mano[1].getNumero + 20;
+         
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano[1].getNumero >= 10 && mano[1].getNumero <=12) && (mano[2].getNumero<=12 && mano[2].getNumero>=10)){
+            resultadoEnvido = 20;
+         
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+       
+    }
+
+    if(mano[0].getNombre===mano[2].getNombre){
+        envido = true;
+        if(mano[0].getNumero<=7 && mano[2].getNumero<=7){
+       
+            resultadoEnvido = mano[0].getNumero + mano[2].getNumero + 20;
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano[0].getNumero<=12 && mano[0].getNumero>=10) && mano[2].getNumero<=7){
+            resultadoEnvido = mano[2].getNumero + 20;
+        
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+        if(mano[0].getNumero<=7 && (mano[2].getNumero<=12 && mano[2].getNumero>=10)){
+            resultadoEnvido = mano[0].getNumero + 20;
+   
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano[0].getNumero >= 10 && mano[0].getNumero <=12) && (mano[2].getNumero<=12 && mano[2].getNumero>=10)){
+            resultadoEnvido = 20;
+
+            if(resultadoEnvido>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido;
+            }else {
+                resultadoEnvido = resultadoAnteriorEnvido;
+            }
+        }
+       
+    }
+    if(!envido){
+        for (let index = 0; index < 3; index++) {
+            const element = mano[index];
+            if((element.getNumero>resultadoEnvido )&& (element.getNumero<=7)){
+                resultadoEnvido = element.getNumero;
+            }
+        }
+        return resultadoEnvido;
+    }
+    return resultadoEnvido;
+    }
+    envido = false;
+    resultadoAnteriorEnvido = 0;
+    if(numJugador === 2){
+    if(mano2[0].getNombre===mano2[1].getNombre){
+        envido = true;
+        if(mano2[0].getNumero<=7&&mano2[1].getNumero<=7){
+
+            resultadoEnvido2 = parseInt(mano2[0].getNumero)+ parseInt(mano2[1].getNumero) + 20;
+            resultadoAnteriorEnvido = resultadoEnvido2;
+        }
+        if((mano2[0].getNumero<=12 && mano2[0].getNumero>=10) && mano2[1].getNumero<=7){
+     
+            resultadoEnvido2 = mano2[1].getNumero + 20;
+            resultadoAnteriorEnvido = resultadoEnvido2;
+        }
+        if(mano2[0].getNumero<=7 && (mano2[1].getNumero<=12 && mano2[1].getNumero>=10)){
+  
+            resultadoEnvido2 = mano2[0].getNumero + 20;
+            resultadoAnteriorEnvido = resultadoEnvido2;
+        }
+        if((mano2[0].getNumero >= 10 && mano2[0].getNumero <=12) && (mano2[1].getNumero<=12 && mano2[1].getNumero>=10)){
+         
+            resultadoEnvido2 = 20;
+            resultadoAnteriorEnvido = resultadoEnvido2;
+        }
+    }
+
+    if(mano2[1].getNombre===mano2[2].getNombre){
+        envido = true;
+        if(mano2[1].getNumero<=7 && mano2[2].getNumero<=7){
+   
+            resultadoEnvido2 = mano2[1].getNumero + mano2[2].getNumero + 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano2[1].getNumero<=12 && mano2[1].getNumero>=10) && mano2[2].getNumero<=7){
+    
+            resultadoEnvido2 = mano2[2].getNumero + 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+        if(mano2[1].getNumero<=7 && (mano2[2].getNumero<=12 && mano2[2].getNumero>=10)){
+      
+            resultadoEnvido2 = mano2[1].getNumero + 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano2[1].getNumero >= 10 && mano2[1].getNumero <=12) && (mano2[2].getNumero<=12 && mano2[2].getNumero>=10)){
+         
+            resultadoEnvido2 = 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+       
+    }
+
+    if(mano2[0].getNombre===mano2[2].getNombre){
+        envido = true;
+        if(mano2[0].getNumero<=7 && mano2[2].getNumero<=7){
+         
+            resultadoEnvido2 = mano2[0].getNumero + mano2[2].getNumero + 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano2[0].getNumero<=12 && mano2[0].getNumero>=10) && mano2[2].getNumero<=7){
+         
+            resultadoEnvido2 = mano2[2].getNumero + 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+        if(mano2[0].getNumero<=7 && (mano2[2].getNumero<=12 && mano2[2].getNumero>=10)){
+            resultadoEnvido2 = mano2[0].getNumero + 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+        if((mano2[0].getNumero >= 10 && mano2[0].getNumero <=12) && (mano2[2].getNumero<=12 && mano2[2].getNumero>=10)){
+            resultadoEnvido2 = 20;
+            if(resultadoEnvido2>resultadoAnteriorEnvido){
+                resultadoAnteriorEnvido = resultadoEnvido2;
+            }else {
+                resultadoEnvido2 = resultadoAnteriorEnvido;
+            }
+        }
+       
+    }
+    if(!envido){
+        for (let index = 0; index <3; index++) {
+                const element = mano2[index];
+            if(element.getNumero>resultadoEnvido2 && element.getNumero<=7){
+                resultadoEnvido2 = element.getNumero;
+            }
+        }
+        return resultadoEnvido2;
+    }
+
+   return resultadoEnvido2;
+}
+    
+
+
+}
+
+
+function analizarGanadorDeEnvido(){
+    puntosJugadorUno = 0;
+    puntosJugadorDos = 0;
+
+    puntosJugadorUno = puntosEnvido(1);
+    puntosJugadorDos = puntosEnvido(2);
+
+    if(puntosJugadorUno > puntosJugadorDos){
+        return 1;
+        
+    }
+    else if(puntosJugadorUno<puntosJugadorDos){
+        return 2;
+    }
+    if(puntosJugadorUno === puntosJugadorDos){
+        if(isMano === 1){
+            return 1;
+        }else {
+            return 2;
+        }
+    }
+    
+
 }
 
 

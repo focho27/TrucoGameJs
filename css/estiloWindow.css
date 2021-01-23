@@ -9,7 +9,10 @@ button{
     outline: none;
 }
 body{
+    width: 70em;
     background-color: darkgreen;
+   
+    margin: auto;
 }
 img{
     width: 6.250em ;
@@ -24,22 +27,79 @@ p{
     background-color: green;
 
     font-weight:600;
-}   
+}  
+
+.contenedorQuieroNoQuieroJ1{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: nowrap;
+}
+
+.contenedorQuieroNoQuieroJ2{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: nowrap;
+}
+
+
+
+.contenedorOptionOneJ1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: nowrap;
+
+  
+    margin-bottom: 5em;
+   /* flex-wrap: nowrap;*/
+    cursor:default;
+    list-style: none;
+  
+    text-align: center;
+    position: relative;
+    top: 0.5em; 
+    margin-bottom: 15em;
+}
+.contenedorOptionOne{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: nowrap;
+   
+  
+    margin-bottom: 5em;
+   /* flex-wrap: nowrap;*/
+    cursor:default;
+    list-style: none;
+  
+    text-align: center;
+    position: relative;
+    top: 4.5em;
+} 
 .nameJ1{
     text-align: center;
     align-self: flex-start;
-    
+  
 }
 .nameJ2{
     text-align: center;
     align-self: center;
- 
+
 }
 .top{
     display: flex;
     justify-content: center;
-    margin-bottom: 23em;
-    margin-top: 1.8em;
+    
+    margin-top: 0.7em;
+   
     
 }
 .down{
@@ -69,12 +129,120 @@ p{
     align-content: center;
     
 }
+.botonEnvidoJ1,.botonRealEnvidoJ1,.botonFaltaEnvidoJ1,.botonTrucoJ1,.botonIrAlMazoJ1{
+    background-color: green;
+    margin-right: 1em;
+    cursor: pointer;
+    box-sizing:border-box;
+   padding:0.5em 0.5em 0.5em 0.5em;
+   
+}
+.botonEnvido,.botonRealEnvido,.botonFaltaEnvido,.botonTruco,.botonIrAlMazo{
+    background-color: green;
+    margin-right: 1em;
+    cursor: pointer;
+  
+    box-sizing:border-box;
+    padding:0.5em 0.5em 0.5em 0.5em;
+
+}
+.botonTrucoJ1,.botonReTrucoJ1,.botonValeCuatroJ1{
+    background-color: green;
+    margin-right: 1em;
+    cursor: pointer;
+  
+    box-sizing:border-box;
+    padding:0.5em 0.5em 0.5em 0.5em;
+}
+.botonTruco,.botonReTruco,.botonValeCuatro{
+    background-color: green;
+    margin-right: 1em;
+    cursor: pointer;
+  
+    box-sizing:border-box;
+    padding:0.5em 0.5em 0.5em 0.5em;
+}
+.score-J1{
+    align-self: center;
+    position: relative;
+    left: 2em;
+}
+.contenedorPuntuacionJ1{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+   
+}
+.puntajeJ1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+#puntuacionJ1{
+    background-color: darkgreen;
+    color:white;
+}
+#puntuacionJ2{
+    background-color: darkgreen;
+    color:white;
+}
+#paqueteEnvidoJ1{
+    display: flex;
+    flex-direction: row;
+}
+#paqueteEnvidoJ2{
+    display: flex;
+    flex-direction: row;
+}
+#paqueteTrucoJ1{
+    display: flex;
+    flex-direction: row;
+}
+#paqueteTrucoJ2{
+    display: flex;
+    flex-direction: row;
+}
+/*#reTrucoJ1Boton,#reTrucoJ2Boton,#valeCuatroJ1Boton,#valeCuatroJ2Boton{
+    display: none;
+}*/
+#botonQuieroJ1,#botonNoQuieroJ1{
+    background-color: green;
+   margin-right: 1em;
+   cursor: pointer;
+   box-sizing:border-box;
+  padding:0.5em 0.5em 0.5em 0.5em;
+  display: none;
+   
+
+}
+#botonQuieroJ2,#botonNoQuieroJ2{
+   background-color: green;
+   margin-right: 1em;
+   cursor: pointer;
+   box-sizing:border-box;
+  padding:0.5em 0.5em 0.5em 0.5em;
+  display: none;
+}
 #circuloImagen{
     width: 5em;
     height: 5em;
-  
-    background-position: center;
+     
     
+}
+#circuloImagen2{
+    width: 3em;
+    height: 3em;
+    cursor: default;
+    
+    
+}
+#circuloImagenJ2{
+    width: 3em;
+    height: 3em;
+    cursor: default;
 }
 #circulo2Imagen{
     width: 5em;
@@ -84,15 +252,14 @@ p{
 
 @media screen and (max-width: 47em) {
     body{
-    width: 100%;
+    width: 70%;
     height: 100%;
- 
+   
 }
     .top{
         display: flex;
         justify-content: center;
-        margin-bottom: 20em;
-        margin-top: 0.5em;
+       
     }
     .down{
         display: flex;
@@ -107,5 +274,55 @@ p{
     .score-nameJ1{
         position: relative;
         right: 1em;
+    }
+    .contenedorOptionOneJ1{
+        display: flex;
+        flex-direction: column;
+       
+       
+     
+    
+        
+        margin-bottom: 5em;
+       /* flex-wrap: nowrap;*/
+        cursor:default;
+        list-style: none;
+        
+        
+        
+     
+        
+    }
+    .contenedorOptionOne{
+        display: flex;
+        flex-direction: column;
+       
+       
+        
+      
+       
+       /* flex-wrap: nowrap;*/
+        cursor:default;
+        list-style: none;
+      
+        
+    } 
+ 
+   
+    .botonEnvidoJ1,.botonRealEnvidoJ1,.botonFaltaEnvidoJ1,.botonTrucoJ1,.botonIrAlMazoJ1{
+        background-color: green;
+       
+        cursor: pointer;
+     
+    
+       
+    }
+    .botonEnvido,.botonRealEnvido,.botonFaltaEnvido,.botonTruco,.botonIrAlMazo{
+        background-color: green;
+       
+        cursor: pointer;
+        
+     
+    
     }
 }

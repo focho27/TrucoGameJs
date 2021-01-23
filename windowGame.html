@@ -13,25 +13,38 @@
     <main>
         
         <section class="top">
-            <div class="score-nameJ1">
+            <article class="score-nameJ1">
             <div class ="nameJ1">
                 <p id="nameJ1Id"></p>
             </div>
             <div class="punctuationJ2">
                 <img src="img/batmanAvatar-removebg-preview.png" alt="Puntaje Truco" id="circuloImagen">
             </div>
-            </div>
-            <div class="first-top">
+            </article>
+            <article class="first-top">
 
             <button onclick = colocarCarta(this) id="primera2">    <img src="img/cartas/basto/1basto.png" alt="As de Basto"  id="primera"> </button>    
         
-            </div>
-            <div class="second-top">
+            </article>
+            <article class="second-top">
            <button  onclick = colocarCarta(this) id="segunda2"><img src="img/cartas/espada/1espada.png" alt="As de Espada" id="segunda"></button>
-            </div>
-            <div class="third-top">
+            </article>
+            <article class="third-top">
             <button onclick=colocarCarta(this) id="tercera2"><img src="img/cartas/espada/7espada.png" alt="7 de Espada"  id="tercera"></button> 
-            </div>
+            </article>
+            <article class="score-J1">
+                <div class="contenedorPuntuacionJ1">
+                <div class="circuloJ1">
+                  <img src="img/circled-removebg-preview.png" alt="Puntaje Truco" id="circuloImagen2">
+                </div>
+                <div class="puntajeJ1">
+                    <p id="puntuacionJ1">0</p>
+                </div>
+                <div class="centrado"> 
+                    
+                </div>
+                </div>
+            </article>
         
         </section>
 
@@ -42,27 +55,144 @@
              </form>
             </div>
         </section>-->
-       
+      
+        <section class="optionJ1">
+            <article class="optionOneJ1">
+            <ul class="contenedorOptionOneJ1">
+                <div id="botonQuieroJ1">
+                    <li onclick=analizarQuiero(this) id="cantaQuieroJ1"><p id="quieroJ1">Quiero</p></li>
+                    </div>
+                    <div id="botonNoQuieroJ1">
+                    <li onclick=analizarQuiero(this) id="cantaNoQuieroJ1"><p id="NoQuieroJ1">No quiero</p></li>
+                </div>
+                <div id="paqueteEnvidoJ1">
+                <div class="botonEnvidoJ1" id="envidoJ1Boton">
+                <li onclick=cantarEnvido(this) id="cantaEnvidoJ1"> <p id="envido">Envido</p> </li>
+                </div>
+                <div class="botonRealEnvidoJ1" id="realEnvidoJ1Boton">
+                <li onclick=cantarRealEnvido(this) id="cantaRealEnvidoJ1"><p id="realEnvido">R. envido</p></li>
+                </div>
+                <div class="botonFaltaEnvidoJ1" id="faltaEnvidoJ1Boton">
+                <li onclick=cantarFaltaEnvido(this) id="cantaFaltaEnvidoJ1"><p id="faltaEnvido">F. envido</p></li>
+                </div>
+                </div>
+
+                <div  id="paqueteTrucoJ1">
+                <div class="botonTrucoJ1" id="trucoJ1Boton">
+                    <li onclick=cantarTruco(this) id="cantaTrucoJ1"><p id="truco">Truco</p></li>
+                </div>
+                <div class="botonReTrucoJ1" id="reTrucoJ1Boton">
+                    <li onclick=cantarReTruco(this) id="cantaReTrucoJ1"><p id="reTruco">Re Truco</p></li>
+                </div>
+                <div class="botonValeCuatroJ1" id="valeCuatroJ1Boton">
+                    <li onclick=cantarValeCuatro(this) id="cantaValeCuatroJ1"><p id="valeCuatro">Vale Cuatro</p></li>
+                </div>
+                </div>
+               
+                <div class="botonIrAlMazoJ1">
+                <li onclick=irAlMazo(this) id="irAlMazoJ1"><p id="irAlMazo">Ir al mazo</p></li>
+                </div>
+              
+            </ul>
+        </article>
+
+        
+        </section> 
+        <!-- <section class="quieroNoQuiero">
+                <article class="quieroNoquieroJ1">
+                    <ul class="contenedorQuieroNoQuieroJ1">
+                        <div class="botonQuieroJ1">
+                        <li onclick=analizarQuiero(this) id="cantaQuieroJ1"><p id="quieroJ1">Quiero</p></li>
+                        </div>
+                        <div class="botonNoQuieroJ1">
+                        <li onclick=analizarQuiero(this) id="cantaNoQuieroJ1"><p id="NoQuieroJ1">No quiero</p></li>
+                        </div>
+                    </ul>
+                   
+                </article>
+                <article class="quieroNoquieroJ2">
+                    <ul class="contenedorQuieroNoQuieroJ2">
+                        <div class="botonQuieroJ2">
+                        <li onclick=analizarQuiero(this) id="cantaQuieroJ2"><p id="quieroJ2">Quiero</p></li>
+                        </div>
+                        <div class="botonNoQuieroJ2">
+                        <li onclick=analizarQuiero(this) id="cantaNoQuieroJ2"><p id="NoQuieroJ2">No quiero</p></li>
+                        </div>
+                    </ul>
+                </article>
+        </section>-->
+        <section class="optionJ2">
+            <article class="optionOne">
+            <ul class="contenedorOptionOne">
+                <div id="botonQuieroJ2">
+                    <li onclick=analizarQuiero(this) id="cantaQuieroJ2"><p id="quieroJ2">Quiero</p></li>
+                    </div>
+                    <div id="botonNoQuieroJ2">
+                    <li onclick=analizarQuiero(this) id="cantaNoQuieroJ2"><p id="NoQuieroJ2">No quiero</p></li>
+                    </div>
+                <div id="paqueteEnvidoJ2">
+                <div class="botonEnvido" id="envidoJ2Boton">
+                <li onclick=cantarEnvido(this) id="cantaEnvidoJ2"> <p id="envidoJ2">Envido</p> </li>
+                </div>
+                <div class="botonRealEnvido" id="realEnvidoJ2Boton">
+                <li onclick=cantarRealEnvido(this) id="cantaRealEnvidoJ2"><p id="realEnvidoJ2">R. envido</p></li>
+                </div>
+                <div class="botonFaltaEnvido" id="faltaEnvidoJ2Boton">
+                <li onclick=cantarFaltaEnvido(this) id="cantaFaltaEnvidoJ2"><p id="faltaEnvidoJ2">F. envido</p></li>
+                </div>
+                </div>
+               
+                <div  id="paqueteTrucoJ2">
+                    <div class="botonTruco" id="trucoJ2Boton">
+                        <li onclick=cantarTruco(this) id="cantaTrucoJ2"><p id="truco">Truco</p></li>
+                    </div>
+                    <div class="botonReTruco"  id="reTrucoJ2Boton">
+                        <li onclick=cantarReTruco(this) id="cantaReTrucoJ2"><p id="reTruco">Re Truco</p></li>
+                    </div>
+                    <div class="botonValeCuatro"  id="valeCuatroJ2Boton">
+                        <li onclick=cantarValeCuatro(this) id="cantaValeCuatroJ2"><p id="valeCuatro">Vale Cuatro</p></li>
+                    </div>
+                    </div>
+               
+                <div class="botonIrAlMazo">
+                <li onclick=irAlMazo(this) id="irAlMazoJ2"><p id="irAlMazo">Ir al mazo</p></li>
+                </div>
+                
+            </ul>
+        </article>  
+        </section> 
+
         <section class="down">
-            <div class="score-nameJ1">
+            <article class="score-nameJ1">
             <div class ="nameJ2">
                 <p id="nameJ2Id"></p>
             </div>
             <div class="punctuationJ2">
                 <img src="img/avatarPerson-removebg-preview.png" alt="Puntaje Truco" id="circulo2Imagen">
             </div>
-            </div>
-             <div class="first-down">
+            </article>
+             <article class="first-down">
             <button onclick=colocarCarta(this) id="cuarta2"><img src="img/cartas/basto/1basto.png" alt="As de Basto"  id="cuarta"></button>
-             </div>
-             <div class="second-down">
+             </article>
+             <article class="second-down">
                 <button  onclick = colocarCarta(this) id="quinta2"><img src="img/cartas/espada/1espada.png" alt="As de Espada" id="quinta"></button>
-             </div>
-             <div class="third-down">
+             </article>
+             <article class="third-down">
                 <button onclick=colocarCarta(this) id="sexta2"><img src="img/cartas/espada/7espada.png" alt="7 de Espada"  id="sexta"></button> 
-             </div>
+             </article>
+             <article class="score-J1">
+                <div class="contenedorPuntuacionJ1">
+                <div class="circuloJ1">
+                  <img src="img/circled-removebg-preview.png" alt="Puntaje Truco" id="circuloImagenJ2">
+                </div>
+                <div class="puntajeJ1">
+                    <p id="puntuacionJ2">0</p>
+                </div>
+                
+                </div>
+            </article>
         </section>
-        
+      
     </main>
     <footer>
 
