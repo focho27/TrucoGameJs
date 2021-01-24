@@ -64,7 +64,7 @@ p{
   
     text-align: center;
     position: relative;
-    top: 0.5em; 
+    
     margin-bottom: 15em;
 }
 .contenedorOptionOne{
@@ -82,7 +82,7 @@ p{
   
     text-align: center;
     position: relative;
-    top: 4.5em;
+    top: 3.8em;
 } 
 .nameJ1{
     text-align: center;
@@ -111,7 +111,7 @@ p{
 .mid{
     text-align: center;
     position:relative;
-    bottom:12em;
+    bottom:10em;
 }
 .score-nameJ1{
     position: relative;
@@ -174,6 +174,14 @@ p{
     cursor: default;
    
 }
+.card-HelpDown{
+    display: flex;
+    flex-direction: column;
+}
+.card-HelpTop{
+    display: flex;
+    flex-direction: column;
+}
 .puntajeJ1{
     position: absolute;
     top: 50%;
@@ -181,13 +189,40 @@ p{
     transform: translate(-50%, -50%);
 
 }
-#puntuacionJ1{
+.card-HelpTop,.card-HelpDown{
+    position: relative;
+    right: 10em;
+    
+    align-self: center;
+}
+.card-HelpTop{
+    top: 3em;
+}
+.card-HelpDown{
+    bottom: 3em;
+}
+
+/*#numberCardTop1,#numberCardTop2{
+    align-self: center;
+    margin-right: 0.3em;
+}*/
+#card-HelpTop1,#card-HelpTop2,#card-HelpDown2,#card-HelpDown1{
+    width: 3em;
+    height: 3em;
+   
+}
+#numberCardTop1,#numberCardTop2,#numberCardDown1,#numberCardDown2{
+    text-align: center;
     background-color: darkgreen;
-    color:white;
+    align-self: center;
+}
+#puntuacionJ1{
+    background-color:#c0c0c0;
+    color:rgb(41, 41, 41);
 }
 #puntuacionJ2{
-    background-color: darkgreen;
-    color:white;
+    background-color:#c0c0c0 ;
+    color:rgb(41, 41, 41);
 }
 #paqueteEnvidoJ1{
     display: flex;
@@ -233,15 +268,15 @@ p{
     
 }
 #circuloImagen2{
-    width: 3em;
-    height: 3em;
+    width: 6em;
+    height: 6em;
     cursor: default;
     
     
 }
 #circuloImagenJ2{
-    width: 3em;
-    height: 3em;
+    width: 6em;
+    height: 6em;
     cursor: default;
 }
 #circulo2Imagen{
