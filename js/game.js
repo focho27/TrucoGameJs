@@ -1060,11 +1060,13 @@ function analizamosAfuera(numeroAnalizado){
             sumaPuntajeTruco(1);
             console.log(j1.getPuntaje+" "+j1.getPuntaje);
             console.log(j2.getPuntaje+" "+j2.getPuntaje);
+            analizarGanadorDelJuego();
             repartir();
         }else if(j2.getPuntos===2){
             sumaPuntajeTruco(2);
             console.log(j1.getPuntaje+" "+j1.getPuntaje);
             console.log(j2.getPuntaje+" "+j2.getPuntaje);
+            analizarGanadorDelJuego();
             repartir();
         }
         if(ganadorDePunto ===5 &&( j1.getPuntos ===0 && j2.getPuntos===0)){
@@ -1084,6 +1086,7 @@ function analizamosAfuera(numeroAnalizado){
             }else{
                 sumaPuntajeTruco(2);
             }
+            analizarGanadorDelJuego();
             repartir();
         }else if(ganadorPuntoAnterior===0 && (j1.getPuntos===1 || j2.getPuntos===1)){
             if(j1.getPuntos===1){
@@ -1091,6 +1094,7 @@ function analizamosAfuera(numeroAnalizado){
             }else{
                 sumaPuntajeTruco(2);
             }
+            analizarGanadorDelJuego();
             repartir();
         }
 
@@ -1134,7 +1138,7 @@ function analizamosAfuera(numeroAnalizado){
             }else if(ganadorDePunto==5 && isMano===2){
                 sumaPuntajeTruco(2);
             }
-            
+            analizarGanadorDelJuego();
                 repartir();
           
         }
@@ -1542,19 +1546,22 @@ function cantarTruco(J){
         document.getElementById("reTrucoJ1Boton").style.display="flex";
         document.getElementById("trucoJ2Boton").style.display="none";
         document.getElementById("trucoJ1Boton").style.display="none";
-        document.getElementById("paqueteEnvidoJ1").style.display="none";
+
         document.getElementById("botonQuieroJ1").style.display="flex";
         document.getElementById("botonNoQuieroJ1").style.display="flex";
         document.getElementById("botonQuieroJ2").style.display="none";
         document.getElementById("botonNoQuieroJ2").style.display="none";
-        if(isMano===1 && (mesaFinal[0][0]==null)){
+        if(isMano===1 && (mesaFinal[0][0]==null) && cantidadDeCantosEnvido===0){
             activarEnvidoJ1();
             document.getElementById("paqueteEnvidoJ1").style.display="flex";
-        }else if(isMano===2 && (mesaFinal[0][0]==null)){
+        }else if(isMano===2 && (mesaFinal[0][0]==null ) && cantidadDeCantosEnvido===0){
             activarEnvidoJ1();
             document.getElementById("paqueteEnvidoJ1").style.display="flex";
         }
-
+        else{
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("paqueteEnvidoJ2").style.display="none";
+        }
         
     }else if(J.id==="cantaTrucoJ1"){
         j1.agregarCanto("TRUCO");
@@ -1570,14 +1577,18 @@ function cantarTruco(J){
         document.getElementById("botonNoQuieroJ1").style.display="none";
         document.getElementById("botonQuieroJ2").style.display="flex";
         document.getElementById("botonNoQuieroJ2").style.display="flex";
-        if(isMano===2 && (mesaFinal[1][0]==null)){
+        if(isMano===2 && (mesaFinal[1][0]==null) && cantidadDeCantosEnvido===0){
             activarEnvidoJ2();
             document.getElementById("paqueteEnvidoJ2").style.display="flex";
 
 
-        }else if(isMano===1 && (mesaFinal[1][0]==null)){
+        }else if(isMano===1 && (mesaFinal[1][0]==null) && cantidadDeCantosEnvido===0){
             activarEnvidoJ2();
             document.getElementById("paqueteEnvidoJ2").style.display="flex";
+        }
+        else{
+            document.getElementById("paqueteEnvidoJ1").style.display="none";
+            document.getElementById("paqueteEnvidoJ2").style.display="none";
         }
     }
 }
@@ -1699,6 +1710,7 @@ function irAlMazo(J){
                     document.getElementById("puntuacionJ1").innerHTML=`${j1.getPuntaje}`;
                 }
             }
+            analizarGanadorDelJuego();
             repartir();
         }else if(J.id==="irAlMazoJ1"){
             console.log("J1 VEMOS " + cantidadDeTrucoQuerido);
@@ -1755,8 +1767,32 @@ function irAlMazo(J){
                     document.getElementById("puntuacionJ2").innerHTML=`${j2.getPuntaje}`;
                 }
             }
+            analizarGanadorDelJuego();
             repartir();
         }
+}
+
+function analizarGanadorDelJuego(){
+    if(j1.getPuntaje===30){
+        gano("j1");
+    }
+    if(j2.getPuntaje===30){
+        gano("j2");
+    }
+}
+
+function gano(ganador){
+    
+    if(ganador==="j1"){
+        finalizarJuego();
+    }
+    if(ganador=== "j2"){
+        finalizarJuego();
+       
+    }
+}
+function finalizarJuego(){
+    console.log("Termino!!!")
 }
 
 function analizarQuiero(a){
@@ -1764,7 +1800,7 @@ function analizarQuiero(a){
     console.log("cantidad de cantos de truco    "+cantidadDeCantosDeTruco);
     console.log("cantidad de cantos de envido    "+cantidadDeCantosEnvido);
     if(a.id==="cantaQuieroJ1"){
-
+        
         document.getElementById("botonQuieroJ1").style.display="none";
         document.getElementById("botonNoQuieroJ1").style.display="none";
 
@@ -1867,7 +1903,7 @@ function analizarQuiero(a){
             
         }
         
-
+       
     }else if(a.id==="cantaNoQuieroJ1"){
         console.log(j1.getNombre+" No quiere");
         document.getElementById("botonQuieroJ1").style.display="none";
@@ -2107,6 +2143,7 @@ function analizarQuiero(a){
             }
     
     }
+    analizarGanadorDelJuego();
 }
 
 function puntosEnvido(numJugador){
